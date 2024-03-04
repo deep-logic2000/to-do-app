@@ -1,11 +1,16 @@
 /* eslint-disable unicorn/filename-case */
 import './app.scss'
+import Header from './components/Header'
+import { store } from './store/store'
+import { Provider } from 'react-redux'
 
 function App() {
   return (
-    <div>
-      <h1>Todo App</h1>
-    </div>
+    <Provider store={store}>
+      <div>
+        <Header />
+      </div>
+    </Provider>
   )
 }
 
