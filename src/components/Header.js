@@ -1,15 +1,22 @@
 /* eslint-disable unicorn/filename-case */
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { addTask } from '../store/slices/task-slice'
+// import { MAX_TODO_LENGTH } from '../constants'
 
 const Header = () => {
   const [inputValue, setInputValue] = useState('')
+  const dispatch = useDispatch()
 
   const handleChange = (event) => {
     setInputValue(event.target.value)
   }
 
-  const handleAddTodo = () => {
-    console.log('Adding todo:', inputValue)
+  const handleAddTask = () => {
+    if (inputValue.length < 15) {
+      dispatch(addTask(inputValue))
+      setInputValue('')
+    }
   }
 
   return (
@@ -21,7 +28,7 @@ const Header = () => {
         onChange={handleChange}
         placeholder="Enter the task"
       />
-      <button onClick={handleAddTodo}>Add Todo</button>
+      <button onClick={handleAddTask}>Add Todo</button>
     </div>
   )
 }

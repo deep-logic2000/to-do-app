@@ -1,22 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = {
-  tasks: [
-    { id: 1, todoText: 'Task 1', completed: false },
-    { id: 2, todoText: 'Task 2', completed: true },
-    { id: 3, todoText: 'Task 3', completed: false },
-  ],
-}
+const initialState = [
+  { id: 1, todoText: 'Task 1', completed: false },
+  { id: 2, todoText: 'Task 2', completed: true },
+  { id: 3, todoText: 'Task 3', completed: false },
+]
 
 export const taskSlice = createSlice({
   name: 'tasks',
   initialState,
   reducers: {
-    getAllTasks: (state) => state.tasks,
     addTask: (state, action) => {
       const newTodo = {
         id: Date.now(),
-        newTask: action.payload,
+        todoText: action.payload,
         completed: false,
       }
       state.push(newTodo)

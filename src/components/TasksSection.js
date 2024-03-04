@@ -1,9 +1,9 @@
 /* eslint-disable unicorn/filename-case */
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
 
 const TodoTasks = () => {
-  const allTasks = useSelector(({ tasks }) => tasks.tasks)
+  const allTasks = useSelector((state) => state.tasks)
 
   return (
     <div>
