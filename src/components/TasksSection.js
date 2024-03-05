@@ -1,7 +1,7 @@
 /* eslint-disable unicorn/filename-case */
 import React, { useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import TaskElement from './task-element'
+import TaskElement from './TaskEement'
 import { toggleCompletedTask, deleteTask } from '../store/slices/task-slice'
 import { filters } from '../constants'
 
