@@ -1,10 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { setLocalStorage } from '../../utils/local-storage'
 
-const initialState = [
-  { id: 1, todoText: 'Task 1', isCompleted: false },
-  { id: 2, todoText: 'Task 2', isCompleted: true },
-  { id: 3, todoText: 'Task 3', isCompleted: false },
-]
+const initialState = []
 
 export const taskSlice = createSlice({
   name: 'tasks',
@@ -17,20 +14,28 @@ export const taskSlice = createSlice({
         isCompleted: false,
       }
       state.push(newTodo)
+      setLocalStorage('MY_APP_STATE', state)
     },
     toggleCompleteTask: (state, action) => {
       const completedTask = state.find((task) => task.id === action.payload)
       completedTask.isCompleted = !completedTask.isCompleted
+      setLocalStorage('MY_APP_STATE', state)
     },
     deleteTask: (state, action) => {
       const index = state.findIndex((task) => task.id === action.payload)
       if (index !== -1) {
         state.splice(index, 1)
       }
+      setLocalStorage('MY_APP_STATE', state)
+    },
+    setTasks: (state, action) => {
+      return action.payload
     },
   },
 })
 
-export const { addTask, toggleCompleteTask, deleteTask } = taskSlice.actions
+export const {
+  addTask, toggleCompleteTask, deleteTask, setTasks,
+} = taskSlice.actions
 
 export default taskSlice.reducer

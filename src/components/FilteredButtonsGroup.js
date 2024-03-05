@@ -17,15 +17,11 @@ import { filters } from '../constants'
 export default function SplitButton() {
   const [open, setOpen] = useState(false)
   const anchorRef = useRef(null)
-  const [selectedIndex, setSelectedIndex] = useState(1)
+  const [selectedIndex, setSelectedIndex] = useState(0)
   const filter = useSelector((state) => state.filter)
   const dispatch = useDispatch()
 
   const options = [filters.ALL, filters.COMPLETED, filters.NOT_COMPLETED]
-
-  const handleClick = () => {
-    console.info(`You clicked ${options[selectedIndex]}`)
-  }
 
   const handleMenuItemClick = (event, index, option) => {
     setSelectedIndex(index)
@@ -53,7 +49,7 @@ export default function SplitButton() {
         aria-label="select filter"
         color="secondary"
       >
-        <Button onClick={handleClick}>{filter}</Button>
+        <Button>{filter}</Button>
         <Button
           size="small"
           aria-controls={open ? 'split-button-menu' : undefined}

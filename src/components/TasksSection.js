@@ -1,8 +1,10 @@
 /* eslint-disable unicorn/filename-case */
-import React from 'react'
+import React, { useEffect, useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import TaskElement from './TaskElement'
-import { toggleCompleteTask } from '../store/slices/task-slice'
+import { toggleCompleteTask, deleteTask } from '../store/slices/task-slice'
+
+import Box from '@mui/material/Box'
 
 import { filters } from '../constants'
 
@@ -11,9 +13,13 @@ const TodoTasks = () => {
   const currentFilter = useSelector((state) => state.filter)
   const dispatch = useDispatch()
 
-  const handleElementClick = (id) => {
+  const handleElementClick = useCallback((id) => {
     dispatch(toggleCompleteTask(id))
-  }
+  }, [dispatch])
+
+  const handleTaskDelete = useCallback((id) => {
+    dispatch(deleteTask(id))
+  }, [dispatch])
 
   const getFilteredTasks = () => {
     switch (currentFilter) {
@@ -33,14 +39,16 @@ const TodoTasks = () => {
   }
 
   return (
-    <div>
-      {getFilteredTasks().length > 0 && getFilteredTasks().map((task) => (
+    <Box component="section">
+      {getFilteredTasks().length > 0 ? getFilteredTasks().map((task) => (
         <TaskElement
           task={task}
           key={task.id}
-          handleElementClick={handleElementClick}/>
-      ))}
-    </div>
+          handleElementClick={handleElementClick}
+          handleTaskDelete={handleTaskDelete}
+        />)) : <div>No tasks available</div>
+      }
+    </Box>
   )
 }
 

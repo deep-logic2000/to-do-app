@@ -13,10 +13,10 @@ const Counter = () => {
 
   return (
     <Container>
-        <Typography variant="h1" component="h2">
+        <Typography variant="h6" component="p" color={'#089c03'}>
             Completed tasks: {getAmountOfCompletedTasks()}
         </Typography>
-        <Typography variant="h1" component="h2">
+        <Typography variant="h6" component="p" color={'#fcd703'}>
             Uncompleted tasks: {allTasks.length - getAmountOfCompletedTasks()}
         </Typography>
     </Container>

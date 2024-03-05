@@ -1,20 +1,31 @@
 /* eslint-disable unicorn/filename-case */
-import './app.scss'
+import React, { useEffect } from 'react'
 import Header from './components/Header/Header'
 import TaskSection from './components/TasksSection'
-import { store } from './store/store'
-import { Provider } from 'react-redux'
+import { setTasks } from './store/slices/task-slice'
+import { Container } from '@mui/material'
+import { useDispatch } from 'react-redux'
+import { getLocalStorage } from './utils/local-storage'
 import { StyledEngineProvider } from '@mui/material/styles'
 
+import './app.scss'
+
 function App() {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    const data = getLocalStorage('MY_APP_STATE')
+    if (data !== null && Array.isArray(data)) {
+      dispatch(setTasks(data))
+    }
+  }, [])
+
   return (
     <StyledEngineProvider injectFirst>
-      <Provider store={store}>
-        <div>
-          <Header />
-          <TaskSection />
-        </div>
-      </Provider>
+      <Container maxWidth="md">
+        <Header />
+        <TaskSection />
+      </Container>
     </StyledEngineProvider>
   )
 }
