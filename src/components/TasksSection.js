@@ -1,12 +1,11 @@
 /* eslint-disable unicorn/filename-case */
-import React, { useEffect, useCallback } from 'react'
+import React, { useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import TaskElement from './TaskElement'
-import { toggleCompleteTask, deleteTask } from '../store/slices/task-slice'
+import TaskElement from './task-element'
+import { toggleCompletedTask, deleteTask } from '../store/slices/task-slice'
+import { filters } from '../constants'
 
 import Box from '@mui/material/Box'
-
-import { filters } from '../constants'
 
 const TodoTasks = () => {
   const allTasks = useSelector((state) => state.tasks)
@@ -14,7 +13,7 @@ const TodoTasks = () => {
   const dispatch = useDispatch()
 
   const handleElementClick = useCallback((id) => {
-    dispatch(toggleCompleteTask(id))
+    dispatch(toggleCompletedTask(id))
   }, [dispatch])
 
   const handleTaskDelete = useCallback((id) => {
@@ -30,7 +29,14 @@ const TodoTasks = () => {
         return allTasks.filter((task) => task.isCompleted)
       }
       case filters.NOT_COMPLETED: {
-        return allTasks.filter((task) => !task.isCompleted)
+        return allTasks.filter((task) => {
+          return task.isCompleted === false
+        })
+      }
+      case filters.IN_PROGRESS: {
+        return allTasks.filter((task) => {
+          return task.isInProgress === true
+        })
       }
       default: {
         return allTasks

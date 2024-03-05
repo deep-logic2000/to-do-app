@@ -1,4 +1,4 @@
-/* eslint-disable unicorn/filename-case */
+// eslint-disable-next-line unicorn/filename-case
 import React from 'react'
 import { useSelector } from 'react-redux'
 

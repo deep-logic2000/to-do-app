@@ -1,11 +1,11 @@
-/* eslint-disable unicorn/filename-case */
+// eslint-disable-next-line unicorn/filename-case
 /* eslint-disable id-length */
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addTask } from '../../store/slices/task-slice'
 
 import FilteredButtonsGroup from '../FilteredButtonsGroup'
-import Counter from '../Counter/Counter'
+import Counter from '../Counter/counter'
 
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'

@@ -21,7 +21,12 @@ export default function SplitButton() {
   const filter = useSelector((state) => state.filter)
   const dispatch = useDispatch()
 
-  const options = [filters.ALL, filters.COMPLETED, filters.NOT_COMPLETED]
+  const options = [
+    filters.ALL,
+    filters.COMPLETED,
+    filters.NOT_COMPLETED,
+    filters.IN_PROGRESS,
+  ]
 
   const handleMenuItemClick = (event, index, option) => {
     setSelectedIndex(index)
