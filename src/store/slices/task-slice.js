@@ -19,9 +19,7 @@ export const taskSlice = createSlice({
       state.push(newTodo)
     },
     toggleCompleteTask: (state, action) => {
-      console.log('action.payload', action.payload)
       const completedTask = state.find((task) => task.id === action.payload)
-      console.log('completed task in slice', completedTask)
       completedTask.isCompleted = !completedTask.isCompleted
     },
     deleteTask: (state, action) => {

@@ -1,7 +1,11 @@
 /* eslint-disable unicorn/filename-case */
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { addTask } from '../store/slices/task-slice'
+import { addTask } from '../../store/slices/task-slice'
+
+import FilteredButtonsGroup from '../FilteredButtonsGroup'
+
+import './index.scss'
 // import { MAX_TODO_LENGTH } from '../constants'
 
 const Header = () => {
@@ -19,6 +23,10 @@ const Header = () => {
     }
   }
 
+  const handleFilterChange = (event) => {
+    dispatch({ type: 'filter/setFilter', payload: event.target.value })
+  }
+
   return (
     <div>
       <h1>Todo App</h1>
@@ -29,6 +37,9 @@ const Header = () => {
         placeholder="Enter the task"
       />
       <button onClick={handleAddTask}>Add Todo</button>
+      <div className='filter-btns-wrapper'>
+        <FilteredButtonsGroup />
+      </div>
     </div>
   )
 }

@@ -6,6 +6,8 @@ import { toggleCompleteTask } from '../store/slices/task-slice'
 
 const TodoTasks = () => {
   const allTasks = useSelector((state) => state.tasks)
+  const currentFilter = useSelector((state) => state.filter)
+  console.log(currentFilter)
   const dispatch = useDispatch()
 
   const handleElementClick = (id) => {
