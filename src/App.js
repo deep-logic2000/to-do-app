@@ -1,6 +1,6 @@
 /* eslint-disable unicorn/filename-case */
 import React, { useEffect } from 'react'
-import Header from './components/Header/header'
+import Header from './components/Header/Header'
 import TaskSection from './components/TasksSection'
 import { setTasks } from './store/slices/task-slice'
 import { Container } from '@mui/material'
